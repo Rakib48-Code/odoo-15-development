@@ -5,7 +5,16 @@
     'summary':'Development Tutorial',
     'description': 'Odoo 15 full development tutorials.',
     'depends' : [],
-    'data': [],
+    'data': [
+
+        # security file
+        'security/ir.model.access.csv',
+
+
+        # view file
+        'views/menu.xml',
+        'views/patient_view.xml',
+    ],
     'installable': True,
     'application': True,
 }
