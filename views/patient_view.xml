@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <!--    < search view patient/>-->
+    <record id="patient_search_view" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Patient Name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="ref"/>
+
+                <!--                <add filter/>-->
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
+                <separator/>
+                <filter name="filter_kid" string="Kids" domain="[('age', '&lt;=', 5)]"/>
+
+                <!--                < add group by/>-->
+                <group expand="0" string="Group By">
+                    <filter name="group_by_gender" string="Gender" context="{'group_by':'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
     <!--    <tree view patient/>-->
     <record id="patient_tree_view" model="ir.ui.view">
         <field name="name">hospital.patient.tree</field>
@@ -10,6 +36,7 @@
                 <field name="name"/>
                 <field name="age"/>
                 <field name="gender"/>
+                <field name="ref"/>
             </tree>
         </field>
     </record>
@@ -23,9 +50,15 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="age"/>
-                        <field name="gender"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="age"/>
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="ref"/>
+                            <field name="active" invisible="1"/>
+                        </group>
                     </group>
                 </sheet>
             </form>

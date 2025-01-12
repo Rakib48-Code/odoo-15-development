@@ -10,3 +10,5 @@ class HospitalPatient(models.Model):
         ('male','Male'),
         ('female','Female'),
     ], string='Gender')
+    ref = fields.Char(string='Reference')
+    active = fields.Boolean(string='Active', default=True)

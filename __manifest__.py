@@ -14,6 +14,7 @@
         # view file
         'views/menu.xml',
         'views/patient_view.xml',
+        'views/female_patient_view.xml',
     ],
     'installable': True,
     'application': True,
