@@ -6,10 +6,19 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
+            <!--            <remove create/>-->
+            <!--            <tree create="0">-->
             <tree>
                 <field name="patient_id"/>
+                <field name="gender"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
+                <field name="ref"/>
+                <field name="state"
+                       decoration-info="state in ('draft', 'in_consultation')"
+                       decoration-danger="state == 'cancel'"
+                       decoration-success="state == 'done'"
+                       widget="badge"/>
             </tree>
         </field>
     </record>
@@ -21,12 +30,39 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_draft" string="Draft" type="object" class="oe_highlight"/>
+                    <button name="action_in_consultation" string="In Consultation" type="object" class="oe_highlight"/>
+                    <button name="action_done" string="Done" type="object" class="oe_highlight"/>
+                    <button name="action_cancel" string="Cancel" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_consultation,done"/>
+                </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="priority" widget="priority" class="mr-3"/>
+                        </h1>
+                    </div>
                     <group>
-                        <field name="patient_id" string="Patient Name"/>
-                        <field name="appointment_time"/>
-                        <field name="booking_date"/>
+                        <group>
+                            <field name="patient_id" string="Patient Name"/>
+                            <field name="gender"/>
+                            <field name="ref"/>
+                        </group>
+                        <group>
+                            <field name="appointment_time"/>
+                            <field name="booking_date"/>
+                        </group>
                     </group>
+                    <!--                    <add notebook/>-->
+                    <notebook>
+                        <page string="Prescription">
+                            <field name="prescription" placeholder="Enter Your Prescription"/>
+                        </page>
+                        <page string="Pharmacy">
+
+                        </page>
+                    </notebook>
                 </sheet>
                 <!-- Chatter -->
                 <div class="oe_chatter">

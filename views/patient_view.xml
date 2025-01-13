@@ -16,7 +16,7 @@
                 <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
                 <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
                 <separator/>
-                <filter name="filter_kid" string="Kids" domain="[('age', '&lt;=', 5)]"/>
+                <!--                <filter name="filter_kid" string="Kids" domain="[('age', '&lt;=', 5)]"/>-->
                 <filter name="filter_archive" string="Archived" domain="[('active', '=', False)]"/>
 
                 <!--                < add group by/>-->
@@ -26,7 +26,7 @@
 
                 <!--                <add searchpanel/>-->
                 <searchpanel>
-                    <field name="gender" icon="fa-users" select="multi"  enable_counters="1"/>
+                    <field name="gender" icon="fa-users" select="multi" enable_counters="1"/>
                 </searchpanel>
 
 
@@ -45,6 +45,11 @@
                 <field name="age"/>
                 <field name="gender"/>
                 <field name="ref"/>
+                <field name="state"
+                       decoration-info="state in ('draft', 'in_consultation')"
+                       decoration-danger="state == 'cancel'"
+                       decoration-success="state == 'done'"
+                       widget="badge"/>
             </tree>
         </field>
     </record>
@@ -56,10 +61,18 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_draft" string="Draft" type="object" class="oe_highlight"/>
+                    <button name="action_in_consultation" string="In Consultation" type="object" class="oe_highlight"/>
+                    <button name="action_done" string="Done" type="object" class="oe_highlight"/>
+                    <button name="action_cancel" string="Cancel" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_consultation,done"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="date_birth"/>
                             <field name="age"/>
                         </group>
                         <group>
