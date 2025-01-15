@@ -44,6 +44,7 @@
                 <field name="name"/>
                 <field name="age"/>
                 <field name="gender"/>
+<!--                <field name="tag_ids" widget="color_picker"/>-->
                 <field name="ref"/>
                 <field name="state"
                        decoration-warning="state == 'in_consultation'"
@@ -69,6 +70,7 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,in_consultation,done"/>
                 </header>
                 <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
                     <group>
                         <group>
                             <field name="name"/>
@@ -78,6 +80,7 @@
                         <group>
                             <field name="gender"/>
                             <field name="ref"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="active" invisible="1"/>
                         </group>
                     </group>

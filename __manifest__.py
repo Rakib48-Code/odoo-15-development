@@ -4,7 +4,7 @@
     'category' : 'Odoo 15 Tutorial',
     'summary':'Development Tutorial',
     'description': 'Odoo 15 full development tutorials.',
-    'depends' : ['mail',],
+    'depends' : ['mail','product'],
     'data': [
 
         # security file
@@ -17,6 +17,7 @@
         'views/female_patient_view.xml',
         'views/male_patient.xml',
         'views/appointment_view.xml',
+        'views/patient_tag_view.xml',
     ],
     'installable': True,
     'application': True,

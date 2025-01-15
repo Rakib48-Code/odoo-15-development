@@ -28,6 +28,7 @@ class HospitalAppointment(models.Model):
         ('done', 'Done'),
         ('cancel', 'Cancelled')], string="Status")
     doctor_id = fields.Many2one('res.users', string='Doctor')
+    pharmacy_id = fields.One2many('hospital.pharmacy', 'appointment_id', string='Pharmacy')
 
     @api.onchange('patient_id')
     def onchange_patient_id(self):
@@ -44,4 +45,17 @@ class HospitalAppointment(models.Model):
 
     def action_cancel(self):
         self.state = 'cancel'
+
+
+
+# new table
+
+class HospitalPharmacy(models.Model):
+    _name = 'hospital.pharmacy'
+    _description = 'Hospital Pharmacy'
+
+    product_id = fields.Many2one('product.product')
+    price_unit = fields.Float(string='Price')
+    qty = fields.Integer(string='Quantity')
+    appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
 

@@ -15,6 +15,8 @@ class HospitalPatient(models.Model):
     ], string='Gender', default='male')
     ref = fields.Char(string='Reference', tracking=True, default='New Patient')
     active = fields.Boolean(string='Active', default=True)
+    image = fields.Image(string='Image')
+    tag_ids = fields.Many2many('patient.tag', string='Tags')
 
     state = fields.Selection([
         ('draft', 'Draft'),
