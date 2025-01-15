@@ -10,6 +10,9 @@
         # security file
         'security/ir.model.access.csv',
 
+        # wizard file
+        'wizard/cancel_appointment_wizard.xml',
+
 
         # view file
         'views/menu.xml',
