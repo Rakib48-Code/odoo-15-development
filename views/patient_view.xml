@@ -46,10 +46,10 @@
                 <field name="gender"/>
                 <field name="ref"/>
                 <field name="state"
-                       decoration-info="state in ('draft', 'in_consultation')"
+                       decoration-warning="state == 'in_consultation'"
                        decoration-danger="state == 'cancel'"
                        decoration-success="state == 'done'"
-                       widget="badge"/>
+                       decoration-info="state == 'draft'" widget="badge"/>
             </tree>
         </field>
     </record>

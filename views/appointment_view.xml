@@ -13,12 +13,14 @@
                 <field name="gender"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
+                <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="ref"/>
                 <field name="state"
-                       decoration-info="state in ('draft', 'in_consultation')"
+                       decoration-warning="state == 'in_consultation'"
                        decoration-danger="state == 'cancel'"
                        decoration-success="state == 'done'"
-                       widget="badge"/>
+                       decoration-info="state == 'draft'" widget="badge"/>
+
             </tree>
         </field>
     </record>
@@ -47,11 +49,12 @@
                         <group>
                             <field name="patient_id" string="Patient Name"/>
                             <field name="gender"/>
-                            <field name="ref"/>
+                            <field name="doctor_id" widget="many2one_avatar_user"/>
                         </group>
                         <group>
                             <field name="appointment_time"/>
-                            <field name="booking_date"/>
+                            <field name="booking_date" default_focus="1"/>
+                            <field name="ref"/>
                         </group>
                     </group>
                     <!--                    <add notebook/>-->
